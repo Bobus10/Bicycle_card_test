@@ -14,7 +14,9 @@ class BicycleCardTestController extends Controller
      */
     public function index()
     {
-        return view('BicycleCardTest.index');
+        return view('BicycleCardTest.index', [
+            'questions' => Question::paginate(1),
+        ]);
     }
 
     /**
@@ -36,10 +38,12 @@ class BicycleCardTestController extends Controller
     /**
      * Display the specified resource.
      */
-    // public function show(BicycleCardTest- ModelName $bicycleCardTest)
-    // {
-    //     //
-    // }
+    public function show($id)
+    {
+        return view('BicycleCardTest.show', [
+            'question' => Question::where('id', $id)->first(),
+        ]);
+    }
 
     // /**
     //  * Show the form for editing the specified resource.

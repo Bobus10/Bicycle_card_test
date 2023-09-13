@@ -11,6 +11,6 @@ class Question extends Model
     use HasFactory;
 
     public function Answers(){
-        return $this->HasMany('Answer');
+        return $this->hasMany(Answer::class);
     }
 }
