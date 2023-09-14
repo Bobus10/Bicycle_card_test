@@ -22,7 +22,7 @@ Route::get('/', [Welcome::class, 'index'])->name('home');
 
 //Test
 Route::get('/bicycle_card_test', [BicycleCardTestController::class, 'index'])->name('test.index');
-Route::get('/bicycle_card_test/{id}', [BicycleCardTestController::class, 'show'])->name('test.show');
+// Route::get('/bicycle_card_test/{id}', [BicycleCardTestController::class, 'show'])->name('test.show');
 //Subject
 Route::get('/bicycle_card_subject', [BicycleCardSubjectController::class, 'index'])->name('subject.index');
 

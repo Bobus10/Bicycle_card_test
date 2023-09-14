@@ -16,6 +16,8 @@ class QuestionSeeder extends Seeder
         $data = [
             ['question' => 'Kierujący rowerem musi stosować się do znaków i sygnałów w następującej kolejności:'],
             ['question' => 'Jakiego kształtu i koloru są znaki ostrzegawcze?'],
+            ['question' => 'Do obowiązkowego wyposażenia roweru należy:'],
+            ['question' => 'Czepiać się pojazdów:'],
         ];
 
         Question::insert($data);

@@ -15,7 +15,9 @@ class BicycleCardTestController extends Controller
     public function index()
     {
         return view('BicycleCardTest.index', [
-            'questions' => Question::paginate(1),
+            //'questions' => Question::paginate(1),
+            'questions' => Question::all(),
+            'countQue' => Question::count(),
         ]);
     }
 
