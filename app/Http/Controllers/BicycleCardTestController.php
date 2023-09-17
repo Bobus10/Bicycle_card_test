@@ -15,10 +15,25 @@ class BicycleCardTestController extends Controller
     public function index()
     {
         return view('BicycleCardTest.index', [
-            //'questions' => Question::paginate(1),
             'questions' => Question::all(),
             'countQue' => Question::count(),
         ]);
+    }
+
+    public function sumPoints($selectedAnswers)
+    {
+        $points = 0;
+
+        if($selectedAnswers){
+            foreach($selectedAnswers as $selectedAnswerId) {
+                $selectedAnswer = Answer::find($selectedAnswerId);
+                if ($selectedAnswer && $selectedAnswer->isCorrect) {
+                    $points++;
+                }
+            }
+        }
+
+        return $points;
     }
 
     /**
@@ -34,8 +49,15 @@ class BicycleCardTestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $selectedAnswers = $request->input('selectedAnswers');
+        session(['selectedAnswers' => $selectedAnswers]);
+
+        $points = $this->sumPoints($selectedAnswers);
+        session(['points' => $points]);
+
+        return redirect()->route('test.showResult');
     }
+
 
     /**
      * Display the specified resource.
@@ -44,6 +66,15 @@ class BicycleCardTestController extends Controller
     {
         return view('BicycleCardTest.show', [
             'question' => Question::where('id', $id)->first(),
+        ]);
+    }
+
+    public function showResult()
+    {
+        $points = session('points');
+
+        return view('BicycleCardTest.result', [
+            'points' => $points,
         ]);
     }
 

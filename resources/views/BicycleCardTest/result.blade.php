@@ -1,0 +1,1 @@
+<div>Wynik: {{ $points }}</div>
