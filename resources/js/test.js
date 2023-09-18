@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const questions = document.querySelectorAll('.que');
     const prevButton = document.getElementById('prevBtn');
     const nextButton = document.getElementById('nextBtn');
+    const navButtons = document.querySelectorAll('queNavBtn');
     let currentQuestionIndex = 0;
 
     function showQuestion(direction) {
@@ -14,6 +15,18 @@ document.addEventListener('DOMContentLoaded', function () {
         questions[currentQuestionIndex].style.display = 'block';
     }
 
+    function navQue(id) {
+        questions[currentQuestionIndex].style.display = 'none';
+        currentQuestionIndex = id;
+        questions[currentQuestionIndex].style.display = 'block';
+    }
+
+    navButtons.forEach(function(button, index) {
+        button.addEventListener('click', function() {
+            navQue(index);
+        });
+    });
+
     prevButton.addEventListener('click', function () {
         showQuestion('prev');
     });
@@ -22,5 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
         showQuestion('next');
     });
 
+    window.navQue = navQue;
     questions[currentQuestionIndex].style.display = 'block';
 });

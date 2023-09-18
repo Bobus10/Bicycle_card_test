@@ -14,9 +14,12 @@ class BicycleCardTestController extends Controller
      */
     public function index()
     {
+        $questions = Question::all();
+        $queCount = count($questions);
+
         return view('BicycleCardTest.index', [
-            'questions' => Question::all(),
-            'countQue' => Question::count(),
+            'questions' => $questions,
+            'queCount' => $queCount,
         ]);
     }
 

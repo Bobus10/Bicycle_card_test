@@ -5,6 +5,11 @@
     <x-slot name="header">
         <h3>Test na kartę rowerową</h3>
     </x-slot>
+    <div class="">
+        @for ($i = 1; $i <= $queCount; $i++)
+            <button type="button" class="queNavBtn" onclick="navQue({{ $i - 1 }})"> {{ $i }}</button>
+        @endfor
+    </div>
 <form action="{{ route('test.store') }}" method="POST">
     @csrf
     <div>
