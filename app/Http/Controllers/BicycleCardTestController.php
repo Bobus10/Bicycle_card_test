@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class BicycleCardTestController extends Controller
 {
+    const PERCENTAGE_TO_PASS = 60;
     /**
      * Display a listing of the resource.
      */
@@ -37,6 +38,23 @@ class BicycleCardTestController extends Controller
         }
 
         return $points;
+    }
+
+    public function percentageGained()
+    {
+        $points = session('points');
+        $queCount = count(Question::all());
+        $percentageGained = ($points/$queCount)*100;
+
+        return $percentageGained;
+    }
+
+    public function isPassed()
+    {
+        if($this->percentageGained() >= self::PERCENTAGE_TO_PASS)
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -78,6 +96,8 @@ class BicycleCardTestController extends Controller
 
         return view('BicycleCardTest.result', [
             'points' => $points,
+            'isPassed' => $this->isPassed(),
+            'percentageGained' => $this->percentageGained(),
         ]);
     }
 
