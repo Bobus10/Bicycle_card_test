@@ -9,6 +9,8 @@ class Answer extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['question'];
+
     public function Question(){
         return $this->belongsTo('Question');
     }

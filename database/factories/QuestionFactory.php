@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Answer;
+use App\Models\Question;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,20 @@ class QuestionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'question' =>fake()->text(50)
         ];
+    }
+    public function configure()
+    {
+        return $this->afterCreating(function (Question $question) {
+            //set one answer on true
+            $correctAnswer = $question->answers->random();
+            $correctAnswer->update(['isCorrect' => true]);
+
+            // else answers set on false
+            $question->answers->where('id', '!=', $correctAnswer->id)->each(function ($answer) {
+                $answer->update(['isCorrect' => false]);
+            });
+        });
     }
 }

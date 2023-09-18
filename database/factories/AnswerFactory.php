@@ -17,7 +17,9 @@ class AnswerFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            // 'question_id' => QuestionFactory::class,
+            'answer' => fake()->text(20),
+            'isCorrect' => fake()->boolean(),
         ];
     }
 }
