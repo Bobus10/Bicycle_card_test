@@ -14,10 +14,22 @@ class QuestionSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['question' => 'Kierujący rowerem musi stosować się do znaków i sygnałów w następującej kolejności:'],
-            ['question' => 'Jakiego kształtu i koloru są znaki ostrzegawcze?'],
-            ['question' => 'Do obowiązkowego wyposażenia roweru należy:'],
-            ['question' => 'Czepiać się pojazdów:'],
+            [
+                'question' => 'Kierujący rowerem musi stosować się do znaków i sygnałów w następującej kolejności:',
+                'image_path' => null,
+                'image_name' => 'aha.png'
+            ],
+            [
+                'question' => 'Jakiego kształtu i koloru są znaki ostrzegawcze?',
+                'image_name' => null,
+                'image_path' => 'https://fwcdn.pl/fpo/06/60/660/8021891.6.jpg'
+            ],
+            ['question' => 'Do obowiązkowego wyposażenia roweru należy:',
+            'image_name' => null,
+            'image_path' => null,],
+            ['question' => 'Czepiać się pojazdów:',
+            'image_name' => null,
+            'image_path' => null,],
         ];
 
         Question::insert($data);

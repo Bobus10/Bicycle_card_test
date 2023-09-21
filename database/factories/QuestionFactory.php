@@ -19,7 +19,7 @@ class QuestionFactory extends Factory
     public function definition(): array
     {
         return [
-            'question' =>fake()->text(50)
+            'question' =>fake()->text(150)
         ];
     }
     public function configure()

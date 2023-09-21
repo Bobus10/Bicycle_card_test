@@ -23,13 +23,13 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // $this->call([
-        //     QuestionSeeder::class,
-        //     AnswerSeeder::class,
-        // ]);
+        $this->call([
+            QuestionSeeder::class,
+            AnswerSeeder::class,
+        ]);
 
-        Question::factory(5)
-            ->has(Answer::factory(3))
-            ->create();
+        // Question::factory(40)
+        //     ->has(Answer::factory(3))
+        //     ->create();
     }
 }

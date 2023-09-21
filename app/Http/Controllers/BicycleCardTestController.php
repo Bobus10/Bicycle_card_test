@@ -10,19 +10,25 @@ use Illuminate\Http\Request;
 class BicycleCardTestController extends Controller
 {
     const PERCENTAGE_TO_PASS = 60;
+    public $questions, $queCount, $points;
+
+    public function __construct()
+    {
+        $this->questions = Question::all();
+        $this->queCount = count($this->questions);
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $questions = Question::all();
-        $queCount = count($questions);
-
         return view('BicycleCardTest.index', [
-            'questions' => $questions,
-            'queCount' => $queCount,
+            'questions' => $this->questions,
+            'queCount' => $this->queCount,
         ]);
     }
+
+
 
     public function sumPoints($selectedAnswers)
     {
@@ -40,10 +46,13 @@ class BicycleCardTestController extends Controller
         return $points;
     }
 
+
+
+
     public function percentageGained()
     {
         $points = session('points');
-        $queCount = count(Question::all());
+        $queCount = $this->queCount;
         $percentageGained = ($points/$queCount)*100;
 
         return $percentageGained;
@@ -93,9 +102,11 @@ class BicycleCardTestController extends Controller
     public function showResult()
     {
         $points = session('points');
+        $sessionData = session()->all();
 
         return view('BicycleCardTest.result', [
             'points' => $points,
+            's' => $sessionData,
             'isPassed' => $this->isPassed(),
             'percentageGained' => $this->percentageGained(),
         ]);

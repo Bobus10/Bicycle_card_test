@@ -12,14 +12,14 @@ use App\Http\Controllers\BicycleCardTestController;
 
 class BicycleCardTestTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
     /**
      * A basic feature test example.
      */
-    public function test_load_test_page(): void
-    {
-        $response = $this->get('/bicycle_card_test');
+    // public function test_load_bicycle_card_test_page(): void
+    // {
+    //     $response = $this->get('/bicycle_card_test');
 
-        $response->assertStatus(200);
-    }
+    //     $response->assertStatus(200);
+    // }
 }

@@ -18,7 +18,7 @@ class AnswerFactory extends Factory
     {
         return [
             // 'question_id' => QuestionFactory::class,
-            'answer' => fake()->text(20),
+            'answer' => fake()->text(40),
             'isCorrect' => fake()->boolean(),
         ];
     }
