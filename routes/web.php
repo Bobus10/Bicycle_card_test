@@ -24,7 +24,7 @@ Route::get('/', [Welcome::class, 'index'])->name('home');
 Route::get('/bicycle_card_test', [BicycleCardTestController::class, 'index'])->name('test.index');
 Route::post('/bicycle_card_test', [BicycleCardTestController::class, 'store'])->name('test.store');
 Route::get('/bicycle_card_test/result', [BicycleCardTestController::class, 'showResult'])->name('test.showResult');
-// Route::get('/bicycle_card_test/{id}', [BicycleCardTestController::class, 'show'])->name('test.show');
+Route::get('/bicycle_card_test/show_answers', [BicycleCardTestController::class, 'showAnswers'])->name('test.showAnswers');
 //Subject
 Route::get('/bicycle_card_subject', [BicycleCardSubjectController::class, 'index'])->name('subject.index');
 

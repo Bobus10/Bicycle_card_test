@@ -28,8 +28,6 @@ class BicycleCardTestController extends Controller
         ]);
     }
 
-
-
     public function sumPoints($selectedAnswers)
     {
         $points = 0;
@@ -45,9 +43,6 @@ class BicycleCardTestController extends Controller
 
         return $points;
     }
-
-
-
 
     public function percentageGained()
     {
@@ -80,6 +75,9 @@ class BicycleCardTestController extends Controller
     public function store(Request $request)
     {
         $selectedAnswers = $request->input('selectedAnswers');
+        if(!$selectedAnswers){
+            $selectedAnswers = [];
+        }
         session(['selectedAnswers' => $selectedAnswers]);
 
         $points = $this->sumPoints($selectedAnswers);
@@ -88,25 +86,27 @@ class BicycleCardTestController extends Controller
         return redirect()->route('test.showResult');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
+    public function showAnswers()
     {
-        return view('BicycleCardTest.show', [
-            'question' => Question::where('id', $id)->first(),
+        $selectedAnswers = session('selectedAnswers');
+        $points = session('points');
+
+        return view('BicycleCardTest.showAnswers', [
+            'questions' => $this->questions,
+            'queCount' => $this->queCount,
+            'points' => $points,
+            'percentageGained' => $this->percentageGained(),
+            'selectedAnswers'=> $selectedAnswers,
         ]);
     }
 
     public function showResult()
     {
         $points = session('points');
-        $sessionData = session()->all();
 
         return view('BicycleCardTest.result', [
             'points' => $points,
-            's' => $sessionData,
+            'queCount' => $this->queCount,
             'isPassed' => $this->isPassed(),
             'percentageGained' => $this->percentageGained(),
         ]);
