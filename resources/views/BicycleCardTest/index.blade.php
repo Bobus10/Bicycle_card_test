@@ -9,7 +9,7 @@
     {{-- Timer --}}
     <div class="py-1">
         <p>Czas:
-            <span id="timer">00:00:00</span>
+            <span id="timer" startingTime={{ $startingTime }}>00:00:00</span>
         </p>
     </div>
     {{-- Navigation between questions --}}
@@ -18,7 +18,7 @@
             <button type="button" class="queNavBtn hover:bg-slate-500 border border-slate-300 px-1 mx-1 my-1" onclick="navQue({{ $i - 1 }})"> {{ $i }}</button>
         @endfor
     </div>
-    <form action="{{ route('test.store') }}" method="POST">
+    <form action="{{ route('test.store') }}" method="POST" id="timeEnd">
         @csrf
         {{-- Questions --}}
         <div class="py-1">
@@ -59,6 +59,6 @@
         </div>
     </form>
 </div>
-@vite(['resources/js/test.js'])
+@vite(['resources/js/test.js', 'resources/js/timer.js'])
 {{-- @endsection --}}
 </x-app-layout>

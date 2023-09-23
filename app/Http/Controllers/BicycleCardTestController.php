@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class BicycleCardTestController extends Controller
 {
     const PERCENTAGE_TO_PASS = 60;
-    public $questions, $queCount, $points;
+    public $questions, $queCount;
 
     public function __construct()
     {
@@ -22,9 +22,12 @@ class BicycleCardTestController extends Controller
      */
     public function index()
     {
+        $startingTime = 600;
+
         return view('BicycleCardTest.index', [
             'questions' => $this->questions,
             'queCount' => $this->queCount,
+            'startingTime' =>  $startingTime,
         ]);
     }
 
