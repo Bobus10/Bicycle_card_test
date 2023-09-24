@@ -7,19 +7,22 @@
         <p class="text-2xl">Test na kartę rowerową</p>
     </div>
     {{-- Timer --}}
-    <div class="py-1">
-        <p>Czas:
-            <span id="timer" startingTime={{ $startingTime }}>00:00:00</span>
-        </p>
-    </div>
-    {{-- Navigation between questions --}}
-    <div class="border border-slate-300 bg-slate-200">
-        @for ($i = 1; $i <= $queCount; $i++)
-            <button type="button" class="queNavBtn hover:bg-slate-500 border border-slate-300 px-1 mx-1 my-1" onclick="navQue({{ $i - 1 }})"> {{ $i }}</button>
-        @endfor
-    </div>
     <form action="{{ route('test.store') }}" method="POST" id="timeEnd">
         @csrf
+        <div class="py-1">
+            <p>Czas:
+                <input type="hidden" name="remainingTime" value="">
+                <span id="timer" data-starting-time={{ $startingTime }}>
+                    00:00:00
+                </span>
+            </p>
+        </div>
+        {{-- Navigation between questions --}}
+        <div class="border border-slate-300 bg-slate-200">
+            @for ($i = 1; $i <= $queCount; $i++)
+                <button type="button" class="queNavBtn hover:bg-slate-500 border border-slate-300 px-1 mx-1 my-1" onclick="navQue({{ $i - 1 }})"> {{ $i }}</button>
+            @endfor
+        </div>
         {{-- Questions --}}
         <div class="py-1">
             @foreach ($questions as $question)

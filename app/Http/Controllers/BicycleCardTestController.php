@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class BicycleCardTestController extends Controller
 {
     const PERCENTAGE_TO_PASS = 60;
-    public $questions, $queCount;
+    public $questions, $queCount, $startingTime = 600;
 
     public function __construct()
     {
@@ -22,12 +22,10 @@ class BicycleCardTestController extends Controller
      */
     public function index()
     {
-        $startingTime = 600;
-
         return view('BicycleCardTest.index', [
             'questions' => $this->questions,
             'queCount' => $this->queCount,
-            'startingTime' =>  $startingTime,
+            'startingTime' =>  $this->startingTime,
         ]);
     }
 
@@ -86,6 +84,9 @@ class BicycleCardTestController extends Controller
         $points = $this->sumPoints($selectedAnswers);
         session(['points' => $points]);
 
+        $remainingTime = $request->input('remainingTime');
+        session(['remainingTime' => $remainingTime]);
+
         return redirect()->route('test.showResult');
     }
 
@@ -100,6 +101,7 @@ class BicycleCardTestController extends Controller
             'points' => $points,
             'percentageGained' => $this->percentageGained(),
             'selectedAnswers'=> $selectedAnswers,
+            'solutionTime' => $this->showSolutionTime(),
         ]);
     }
 
@@ -112,7 +114,23 @@ class BicycleCardTestController extends Controller
             'queCount' => $this->queCount,
             'isPassed' => $this->isPassed(),
             'percentageGained' => $this->percentageGained(),
+            'solutionTime' => $this->showSolutionTime(),
         ]);
+    }
+
+    public function showSolutionTime() {
+        $remainingTime = session('remainingTime');
+        $solutionTime = $this->startingTime - $remainingTime;
+
+        $minutes = floor($solutionTime / 60);
+        $seconds = $solutionTime % 60;
+
+        $minutesFormatted = str_pad($minutes,2 , "0", STR_PAD_LEFT);
+        $secondsFormatted = str_pad($seconds,2 , "0", STR_PAD_LEFT);
+
+        $solutionTimeFormatted = strval($minutesFormatted) . ":" . strval($secondsFormatted);
+
+        return $solutionTimeFormatted;
     }
 
     // /**

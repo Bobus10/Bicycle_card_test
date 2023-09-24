@@ -3,7 +3,7 @@
     <div class="">
         <p class="text-lg">Wyniki testu:</p>
         <p>Odpowiedziałeś dobrze na <span class="font-bold">{{ $points }} z {{ $queCount }} pytań, {{ $percentageGained }}%</span></p>
-        <p>W czasie: 00:00:00</p>
+        <p>W czasie: {{ $solutionTime }}</p>
         @if ($isPassed)
             <p class="font-bold">Gratulacje zdałeś</p>
         @else

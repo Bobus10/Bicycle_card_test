@@ -7,9 +7,7 @@
     </div>
     {{-- Timer --}}
     <div class="py-1">
-        <p>Czas:
-            <span id="timer">00:00:00</span>
-        </p>
+        <p>Czas: {{ $solutionTime }}</p>
     </div>
     {{-- Questions --}}
     <div class="py-1">
