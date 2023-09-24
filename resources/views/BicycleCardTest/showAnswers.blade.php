@@ -13,17 +13,7 @@
     <div class="py-1">
         @foreach ($questions as $question)
             <div class="que">
-                    <p>Pytanie: {{ $loop->iteration }} z {{ $queCount }}</p>
-                    <div class="my-2 flex justify-center items-center">
-                        @if ($question->image_name)
-                            <img src="{{ asset('build/assets/'.$question->image_name) }}" alt="Img">
-                        @elseif ($question->image_path)
-                            <img src="{{ $question->image_path }}" alt="Img">
-                        @endif
-                    </div>
-                    <p>
-                        <label for="question_{{ $question->id }}">{{ $question->question }}</label>
-                    </p>
+                <x-question :question="$question" :queCount="$queCount" :loop="$loop->iteration"/>
                 {{-- Answers --}}
                 <ul class="py-2 list-none border border-x-slate-300 sm:px-2">
                     @foreach ($question->answers as $answer)
@@ -51,8 +41,8 @@
     </div>
     {{-- Buttons --}}
     <div class="sticky bottom-0 bg-slate-100 z-10 text-center">
-        <a href="{{ route('home') }}"><button type="button" class='rounded-full bg-blue-100 hover:bg-blue-500 py-2 px-4'>Strona startowa</button></a>
-        <a href="{{ route('test.showResult') }}"><button type="button" class='rounded-full bg-blue-100 hover:bg-blue-500 py-2 px-4'>Podsumowanie</button></a>
+        <x-buttons.route-button route="home" label="Strona startowa"/>
+        <x-buttons.route-button route="test.showResult" label="Podsumowanie"/>
     </div>
 </div>
 </x-app-layout>

@@ -27,28 +27,11 @@
         <div class="py-1">
             @foreach ($questions as $question)
             <div class="que" style="display: none;">
-                    <p>Pytanie: {{ $loop->iteration }} z {{ $queCount }}</p>
-                    <div class="my-2 flex justify-center items-center">
-                        @if ($question->image_name)
-                            <img src="{{ asset('build/assets/'.$question->image_name) }}" alt="Img">
-                        @elseif ($question->image_path)
-                            <img src="{{ $question->image_path }}" alt="Img">
-                        @endif
-                    </div>
-                    <p>
-                        <label for="question_{{ $question->id }}">{{ $question->question }}</label>
-                    </p>
+                <x-question :question="$question" :queCount="$queCount" :loop="$loop->iteration"/>
                 {{-- Answers --}}
                 <ul class="py-2 list-none border border-x-slate-300 sm:px-2">
                     @foreach ($question->answers as $answer)
-                    <li>
-                        <label for="answer_{{ $answer->id }}">
-                            <input type="radio" id="answer_{{ $answer->id }}" name="selectedAnswers[{{ $question->id }}]" value="{{ $answer->id }}"/>
-                            {{ $answer->answer}}
-                            {{--* Correct answer --}}
-                            - {{ $answer->isCorrect }}
-                        </label>
-                    </li>
+                        <x-answer :question="$question" :answer="$answer"/>
                     @endforeach
                 </ul>
             </div>
@@ -56,9 +39,9 @@
         </div>
         {{-- Buttons --}}
         <div class="grid sm:grid-cols-3 sm:start-3 gap-4 py-3">
-            <button id="prevBtn" type="button" class='rounded-full bg-blue-100 hover:bg-blue-500 py-2 px-4' onclick="showQuestion('prev')">Poprzednie</button>
-            <button id="endBtn" type="submit" class='rounded-full bg-red-100 hover:bg-red-500 py-2 px-4'>Zakończ</button>
-            <button id="nextBtn" type="button" class='rounded-full bg-blue-100 hover:bg-blue-500 py-2 px-4' onclick="showQuestion('next')">Następne</button>
+            <x-buttons.nav-button id="prevBtn" onClick="showQuestion('prev')" label="Poprzednie"/>
+            <x-buttons.end-button id="endBtn"/>
+            <x-buttons.nav-button id="nextBtn" onClick="showQuestion('next')" label="Następne"/>
         </div>
     </form>
 </div>
