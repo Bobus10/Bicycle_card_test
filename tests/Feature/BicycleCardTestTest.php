@@ -12,7 +12,7 @@ use App\Http\Controllers\BicycleCardTestController;
 
 class BicycleCardTestTest extends TestCase
 {
-    // use RefreshDatabase;
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      */
@@ -22,4 +22,22 @@ class BicycleCardTestTest extends TestCase
 
     //     $response->assertStatus(200);
     // }
+    public function test_counting_points_empty_array(): void
+    {
+        $bicycleCardTestController = new BicycleCardTestController();
+        $checkedAnswers = [];
+        $points = $bicycleCardTestController->sumPoints($checkedAnswers);
+
+        $this->assertEquals(0, $points);
+    }
+
+    public function test_counting_points_one_answer_is_correct(): void
+    {
+        $bicycleCardTestController = new BicycleCardTestController();
+        $checkedAnswers = Answer::factory()->create();
+dd($checkedAnswers);
+        $points = $bicycleCardTestController->sumPoints($checkedAnswers);
+
+        $this->assertEquals(1, $points);
+    }
 }

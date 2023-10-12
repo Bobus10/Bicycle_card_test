@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BicycleCardSubject;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class BicycleCardSubjectController extends Controller
@@ -12,7 +13,9 @@ class BicycleCardSubjectController extends Controller
      */
     public function index()
     {
-        return view('BicycleCardSubject.index');
+        return view('BicycleCardSubject.index', [
+            'subjects' => Subject::all(),
+        ]);
     }
 
     /**

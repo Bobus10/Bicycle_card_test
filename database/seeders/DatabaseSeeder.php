@@ -31,5 +31,9 @@ class DatabaseSeeder extends Seeder
         Question::factory(40)
             ->has(Answer::factory(3))
             ->create();
+
+        $this->call([
+            SubjectSeeder::class,
+        ]);
     }
 }

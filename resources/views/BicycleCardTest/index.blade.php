@@ -3,14 +3,12 @@
 {{-- @section('content') --}}
 <div class="grid grid-cols-1 gap-1 justify-center items-center px-5 py-3 border border-black container mx-auto">
     {{-- Header --}}
-    <div class="text-center">
-        <p class="text-2xl">Test na kartę rowerową</p>
-    </div>
+    <x-test-header/>
     {{-- Timer --}}
     <form action="{{ route('test.store') }}" method="POST" id="timeEnd">
         @csrf
         <div class="py-1">
-            <p>Czas:
+            <p>Time:
                 <input type="hidden" name="remainingTime" value="">
                 <span id="timer" data-starting-time={{ $startingTime }}>
                     00:00:00
@@ -39,9 +37,9 @@
         </div>
         {{-- Buttons --}}
         <div class="grid sm:grid-cols-3 sm:start-3 gap-4 py-3">
-            <x-buttons.nav-button id="prevBtn" onClick="showQuestion('prev')" label="Poprzednie"/>
+            <x-buttons.nav-button id="prevBtn" onClick="showQuestion('prev')" label="Previous"/>
             <x-buttons.end-button id="endBtn"/>
-            <x-buttons.nav-button id="nextBtn" onClick="showQuestion('next')" label="Następne"/>
+            <x-buttons.nav-button id="nextBtn" onClick="showQuestion('next')" label="Next"/>
         </div>
     </form>
 </div>

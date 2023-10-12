@@ -1,5 +1,5 @@
 <div>
-    <p>Pytanie: {{ $loop }} z {{ $queCount }}</p>
+    <p>Question: {{ $loop }} z {{ $queCount }}</p>
     <div class="my-2 flex justify-center items-center">
         @if ($question->image_name)
             <img src="{{ asset('build/assets/'.$question->image_name) }}" alt="Img">

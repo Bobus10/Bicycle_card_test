@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Illuminate\Support\Facades\DB;
 
 class ExampleTest extends TestCase
 {
@@ -16,4 +17,11 @@ class ExampleTest extends TestCase
 
     //     $response->assertStatus(200);
     // }
+
+    public function test_the_data_base_using_memory_to_testing(): void
+    {
+        $databaseName = DB::connection()->getDatabaseName();
+
+        $this->assertEquals(':memory:', $databaseName, 'Test is not using in-memory database.');
+    }
 }

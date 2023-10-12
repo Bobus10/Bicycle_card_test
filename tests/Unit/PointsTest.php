@@ -12,26 +12,26 @@ class PointsTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function test_counting_points_empty_array(): void
-    {
-        $bicycleCardTestController = new BicycleCardTestController();
-        $checkedAnswers = [];
-        $points = $bicycleCardTestController->sumPoints($checkedAnswers);
+    // public function test_counting_points_empty_array(): void
+    // {
+    //     $bicycleCardTestController = new BicycleCardTestController();
+    //     $checkedAnswers = [];
+    //     $points = $bicycleCardTestController->sumPoints($checkedAnswers);
 
-        $this->assertEquals(0, $points);
-    }
+    //     $this->assertEquals(0, $points);
+    // }
 
-    public function test_counting_points_one_answer_is_correct(): void
-    {
-        $bicycleCardTestController = new BicycleCardTestController();
-        $checkedAnswers = [
-            ['isCorrect' => true],
-            ['isCorrect' => false],
-        ];
-        $points = $bicycleCardTestController->sumPoints($checkedAnswers);
+    // public function test_counting_points_one_answer_is_correct(): void
+    // {
+    //     $bicycleCardTestController = new BicycleCardTestController();
+    //     $checkedAnswers = [
+    //         ['isCorrect' => true],
+    //         ['isCorrect' => false],
+    //     ];
+    //     $points = $bicycleCardTestController->sumPoints($checkedAnswers);
 
-        $this->assertEquals(1, $points);
-    }
+    //     $this->assertEquals(1, $points);
+    // }
 
     // public function test_counting_points_wrong_answer(): void
     // {

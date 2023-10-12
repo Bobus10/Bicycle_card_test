@@ -2,7 +2,7 @@
 <div class="grid grid-cols-1 gap-1 justify-center items-center px-5 py-3 border border-black container mx-auto relative">
     {{-- Header --}}
     <div class="text-center sticky top-0 bg-slate-100 z-10">
-        <p class="text-2xl">Test na kartę rowerową</p>
+        <x-test-header/>
         <p class="bold">{{ $points }} z {{ $queCount }}, {{ $percentageGained }}%</p>
     </div>
     {{-- Timer --}}
@@ -41,8 +41,8 @@
     </div>
     {{-- Buttons --}}
     <div class="sticky bottom-0 bg-slate-100 z-10 text-center">
-        <x-buttons.route-button route="home" label="Strona startowa"/>
-        <x-buttons.route-button route="test.showResult" label="Podsumowanie"/>
+        <x-buttons.route-button route="home" label="Main page"/>
+        <x-buttons.route-button route="test.showResult" label="Result"/>
     </div>
 </div>
 </x-app-layout>
